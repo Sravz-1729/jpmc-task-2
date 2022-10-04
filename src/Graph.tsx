@@ -32,7 +32,16 @@ class Graph extends Component<IProps, {}> {
 
   componentDidMount() {
     // Get element to attach the table from the DOM.
-    const elem: PerspectiveViewerElement = document.getElementsByTagName('perspective-viewer')[0] as unknown as PerspectiveViewerElement;
+    const elem= document.getElementsByTagName('perspective-viewer')[0] as unknown as PerspectiveViewerElement;
+    elem.setAtrribute('view','y_line');
+    elem.setAtrribute('column-pivots','["stock"]');
+    elem.setAtrribute('row-pivots','["timestamp"]');
+    elem.setAtrribute('columns','["top_ask_price"]');
+    elem.setAtrribute('aggregates','
+                      {"stock":"distinct count",
+                      "top_ask_price":"avg",
+                      "top_bid_price":"avg",
+                      "timestamp":"distinct count"}');
 
     const schema = {
       stock: 'string',
